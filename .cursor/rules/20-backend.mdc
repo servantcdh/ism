@@ -1,0 +1,14 @@
+---
+description: Backend rules (NestJS + Prisma + Postgres) and invariants (idempotency, transactions).
+globs:
+  - "apps/api/**"
+  - "prisma/**"
+---
+
+# Backend Rules
+
+- Stack fixed: NestJS(Fastify) + Prisma + Postgres + REST + Swagger.
+- All write endpoints require clientMutationId (idempotency).
+- Enforce no-negative-stock on server; wrap sale/in/adjust flows in a transaction.
+- Prefer explicit service-layer methods for business rules; keep controllers thin.
+- Keep API DTOs typed and validated.

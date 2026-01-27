@@ -1,0 +1,19 @@
+---
+description: Frontend conventions for admin-web and store-pwa.
+globs:
+  - "apps/admin-web/**"
+  - "apps/store-pwa/**"
+  - "packages/ui/**"
+  - "packages/tokens/**"
+  - "packages/metrics/**"
+  - "packages/shared/**"
+---
+
+# Frontend Rules
+
+- Stack fixed: React/Vite/TS + TanStack Query/Router/Virtual + Zustand + Axios + Jest.
+- Server state in TanStack Query; UI state in Zustand.
+- Use packages/ui components (avoid app-local component duplication).
+- Prefer URL-synced state via TanStack Router for list filters/sort/page.
+- Performance: virtualize large lists, debounce search input, prefetch detail when helpful.
+- Metrics: keep web-vitals + custom marks flowing to POST /metrics.

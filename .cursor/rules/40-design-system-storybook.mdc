@@ -1,0 +1,14 @@
+---
+description: Design system rules (tokens/ui/storybook). Keep docs and stories up to date.
+globs:
+  - "apps/storybook/**"
+  - "packages/ui/**"
+  - "packages/tokens/**"
+---
+
+# Design System Rules
+
+- tokens: primitive + semantic, light/dark, CSS variables build output.
+- ui: tokens-based components, a11y defaults, variant/size/state standardized.
+- storybook: autodocs enabled, keep stories updated; add play tests for interactions.
+- Avoid duplicating component styles inside apps; improve tokens/ui instead.

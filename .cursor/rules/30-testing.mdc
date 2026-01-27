@@ -1,0 +1,19 @@
+---
+description: Testing rules. TDD-first approach and minimum coverage goals.
+globs:
+  - "**/*test*"
+  - "**/*.spec.*"
+  - "**/*.stories.*"
+  - "packages/shared/**"
+  - "apps/api/**"
+  - "apps/store-pwa/**"
+  - "packages/ui/**"
+---
+
+# Testing Rules
+
+- For changes: add or update tests first (or in same PR).
+- Shared domain: test boundary cases and invariants.
+- API: test idempotency and no-negative-stock, include at least one concurrency scenario.
+- Store Outbox: test queue persistence + replay + clientMutationId dedupe.
+- UI: Jest+RTL for core behavior; storybook interaction tests for flows.

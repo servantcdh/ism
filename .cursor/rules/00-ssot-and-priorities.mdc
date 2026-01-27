@@ -1,0 +1,17 @@
+---
+description: Always-on project SSOT and priorities. Use PROMPT.md as the single source of truth.
+globs:
+  - "**/*"
+---
+
+# SSOT & Priorities
+
+- PROMPT.md is SSOT. If conflict, follow PROMPT.md.
+- Priority order: TDD/tests first → performance → metrics pipeline → design system (tokens/ui/storybook).
+- Do NOT change stack/architecture without updating docs/adr first.
+- When unsure, read: CONTEXT.md, docs/LLM_RULES.md, PROMPT.md.
+
+## Output expectations
+- Propose a small, safe plan.
+- Implement with tests (or same PR).
+- Keep CI green.

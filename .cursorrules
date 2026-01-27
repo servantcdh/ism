@@ -1,0 +1,5 @@
+SSOT: PROMPT.md (conflict -> PROMPT.md)
+Also read: CONTEXT.md, docs/LLM_RULES.md, docs/adr/*
+
+Priorities: TDD/tests first -> performance -> metrics pipeline -> design system (tokens/ui/storybook)
+No stack changes without updating ADR first.
