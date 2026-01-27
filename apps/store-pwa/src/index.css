@@ -1,0 +1,31 @@
+@import "@inventory/tokens/src/tokens.css";
+@import "@inventory/ui/src/styles.css";
+
+:root {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+body {
+  margin: 0;
+}
+
+.app-shell {
+  padding: var(--space-6);
+  display: grid;
+  gap: var(--space-6);
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-actions {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  justify-content: flex-end;
+}

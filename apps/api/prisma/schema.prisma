@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ProductCodeType {
+  BARCODE_1D
+  CUSTOM_QR
+}
+
+enum StockMovementType {
+  IN
+  ADJUST
+  SALE
+}
+
+model Product {
+  id        String       @id @default(cuid())
+  sku       String       @unique
+  name      String
+  price     Int
+  active    Boolean      @default(true)
+  createdAt DateTime     @default(now())
+  codes     ProductCode[]
+  inventory Inventory[]
+  saleItems SaleItem[]
+}
+
+model ProductCode {
+  id        String          @id @default(cuid())
+  productId String
+  type      ProductCodeType
+  value     String          @unique
+  createdAt DateTime        @default(now())
+
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Store {
+  id        String      @id @default(cuid())
+  name      String
+  inventory Inventory[]
+  movements StockMovement[]
+  sales     Sale[]
+}
+
+model Inventory {
+  storeId   String
+  productId String
+  onHand    Int
+  updatedAt DateTime @updatedAt
+
+  store   Store   @relation(fields: [storeId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@id([storeId, productId])
+}
+
+model StockMovement {
+  id               String            @id @default(cuid())
+  storeId          String
+  productId        String
+  type             StockMovementType
+  qty              Int
+  unitPrice        Int?
+  reason           String?
+  createdAt        DateTime @default(now())
+  createdBy        String
+  clientMutationId String  @unique
+
+  store   Store   @relation(fields: [storeId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Sale {
+  id               String     @id @default(cuid())
+  storeId          String
+  totalAmount      Int
+  createdAt        DateTime   @default(now())
+  createdBy        String
+  clientMutationId String     @unique
+  items            SaleItem[]
+
+  store Store @relation(fields: [storeId], references: [id])
+}
+
+model SaleItem {
+  saleId     String
+  productId  String
+  qty        Int
+  unitPrice  Int
+  lineAmount Int
+
+  sale    Sale    @relation(fields: [saleId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@id([saleId, productId])
+}
+
+model ClientMetric {
+  id        String   @id @default(cuid())
+  app       String
+  name      String
+  value     Float
+  unit      String
+  tags      Json
+  createdAt DateTime @default(now())
+}

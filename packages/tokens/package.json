@@ -1,0 +1,26 @@
+{
+  "name": "@inventory/tokens",
+  "version": "0.0.1",
+  "private": false,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./tokens.css": "./dist/tokens.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node scripts/build-tokens.mjs && tsc -p tsconfig.build.json",
+    "dev": "node scripts/build-tokens.mjs && tsc -p tsconfig.build.json --watch",
+    "test": "echo \"no tests yet\""
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}
